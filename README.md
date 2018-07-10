@@ -1,4 +1,4 @@
-# AutoNUE Dataset Code
+# Scene Understanding Challenge for Autonomous Navigation in Unstructured Environments
 
 Code for working with the dataset used for the [Scene Understanding Challenge for Autonomous Navigation in Unstructured Environments](http://cvit.iiit.ac.in/scene-understanding-challenge-2018/). For details of getting the dataset and updates see:
 
