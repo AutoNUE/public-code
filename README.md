@@ -1,8 +1,8 @@
 # AutoNUE Dataset Code
 
-Code for working with the AutoNUE dataset used for the [AutoNUE Challenge](http://cvit.iiit.ac.in/autonue-challenge/). For details of getting the dataset and updates see:
+Code for working with the dataset used for the [Scene Understanding Challenge for Autonomous Navigation in Unstructured Environments](http://cvit.iiit.ac.in/scene-understanding-challenge-2018/). For details of getting the dataset and updates see:
 
-- http://cvit.iiit.ac.in/autonue-challenge/ 
+- http://cvit.iiit.ac.in/scene-understanding-challenge-2018/ 
 - http://cvit.iiit.ac.in/autonue2018/
 
 **For using first add helpers/ to $PYTHONPATH**
@@ -10,12 +10,12 @@ Code for working with the AutoNUE dataset used for the [AutoNUE Challenge](http:
 ## Dataset Structure
 
 The structure is similar to the cityscapes dataset. That is:
-- gtFine/<drive_no>/<6 digit img_id>_gtFine_polygons.json for ground truths
-- leftImg8bit/<drive_no>/<6 digit img_id>_leftImg8bit.png for image frames
+- gtFine/<split>/<drive_no>/<6 digit img_id>_gtFine_polygons.json for ground truths
+- leftImg8bit/<split>/<drive_no>/<6 digit img_id>_leftImg8bit.png for image frames
 
 Furthermore for training, label masks needs to be generated as described bellow resulting in the following files:
-- gtFine/<drive_no>/<6 digit img_id>_gtFine_labellevel3Ids.json
-- gtFine/<drive_no>/<6 digit img_id>_gtFine_instancelevel3Ids.json
+- gtFine/<split>/<drive_no>/<6 digit img_id>_gtFine_labellevel3Ids.png
+- gtFine/<split>/<drive_no>/<6 digit img_id>_gtFine_instancelevel3Ids.png
 
 ## Labels
 
