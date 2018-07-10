@@ -7,6 +7,8 @@ Code for working with the dataset used for the [Scene Understanding Challenge fo
 
 **For using first add helpers/ to $PYTHONPATH**
 
+**The code has been tested on python 3.6.4**
+
 ## Dataset Structure
 
 The structure is similar to the cityscapes dataset. That is:
