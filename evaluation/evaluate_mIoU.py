@@ -116,11 +116,6 @@ def main(args):
     pairs = [(preds[i], gts[i]) for i in range(len(gts))]
 
     pool = Pool(args.num_workers)
-    # results = pool.map(process_pred_gt_pair, pairs)
-    # results = []
-    # for i,p in enumerate(pairs):
-    #     results.append(process_pred_gt_pair(p))
-    #     print(i)
 
     results = list(tqdm.tqdm(pool.imap(process_pred_gt_pair, pairs), total=len(pairs)))
     pool.close()
@@ -130,10 +125,11 @@ def main(args):
         confusion_matrix += results[i]
 
 
-    np.save('cm',confusion_matrix)
+    os.makedirs('eval_results', exist_ok=True)
+    np.save('eval_results/cm',confusion_matrix)
 
     ious = eval_ious(confusion_matrix)
-    np.save('ious', np.array(ious))
+    np.save('eval_results/ious', np.array(ious))
     for i in range(26):
         print(f'{class_names[i]}:\t\t\t\t {ious[i]*100}')
 

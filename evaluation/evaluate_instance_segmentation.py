@@ -626,12 +626,9 @@ def evaluateImgLists(predictionList, groundTruthList, args):
     avgDict = computeAverages(apScores,args)
     # result dict
     resDict = prepareJSONDataForResults(avgDict, apScores, args)
-    # if args.JSONOutput:
-    #     # create output folder if necessary
-    #     path = os.path.dirname(args.exportFile)
-    #     ensurePath(path)
-    #     # Write APs to JSON
-    #     writeDict2JSON(resDict, args.exportFile)
+    if args.JSONOutput:
+        os.makedirs('eval_results', exist_ok=True)
+        writeDict2JSON(resDict, 'eval_results/instance.json')
 
     if not args.quiet:
          # Print results
@@ -643,9 +640,8 @@ def evaluateImgLists(predictionList, groundTruthList, args):
 
 def get_args():
     parser = ArgumentParser()
-    parser.add_argument('--gts', default="/ssd_scratch/cvit/girish.varma/dataset/anue/gtFine/val")
-    parser.add_argument('--preds', default="/ssd_scratch/cvit/girish.varma/test_out/gtFine/val")
-    parser.add_argument('--num-workers', type=int, default=10)
+    parser.add_argument('--gts', default="")
+    parser.add_argument('--preds', default="")
     
     args = parser.parse_args()
 
@@ -657,7 +653,7 @@ def main(ar):
     global args
 
 
-    groundTruthImgList = glob.glob(f'{ar.gts}/*/*_gtFine_instanceids.png')[:50]
+    groundTruthImgList = glob.glob(f'{ar.gts}/*/*_gtFine_instanceids.png')
     predictionImgList = [ gt.replace('_gtFine_instanceids.png','_leftImg8bit.txt').replace(ar.gts, ar.preds) for gt in groundTruthImgList ]
     
     evaluateImgLists(predictionImgList, groundTruthImgList, args)
