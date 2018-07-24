@@ -5,7 +5,7 @@ import glob
 import time
 import numpy as np
 from multiprocessing import Pool
-
+import matplotlib.pyplot as plt
 
 def get_args():
     parser = ArgumentParser()
@@ -37,6 +37,8 @@ def add_to_confusion_matrix(gt, pred, mat):
 
 
     for (gtp,predp) in zip(gt, pred):
+        if gtp == 255:
+            gtp = 26
         mat[gtp, predp] += 1
 
     return mat
@@ -63,14 +65,31 @@ def process_pred_gt_pair(pair):
     confusion_matrix = np.zeros(shape=(26+1, 26+1),dtype=np.ulonglong)
     try:
         gt = Image.open(gt)
+        # print(gt.size)
+        if gt.size != (1920, 1080):
+            gt = gt.resize((1920, 1080), resample=Image.NEAREST)
         gt  = np.array(gt)
     except:
         print("Unable to load " + gt)
     try:
         pred = Image.open(pred)
+        if pred.size != (1920, 1080):
+            pred = pred.resize((1920, 1080), resample=Image.NEAREST)
         pred = np.array(pred)
     except:
         print("Unable to load " + pred)
+
+    # plt.matshow(gt)
+    # plt.show()
+    # plt.matshow(pred)
+    # plt.show()
+
+
+    
+    
+
+    # print(pred.size,gt.size)
+    
     add_to_confusion_matrix(gt, pred, confusion_matrix)
 
     return confusion_matrix
@@ -89,7 +108,7 @@ def main(args):
     gts     = []
     preds   = []
     for i, gtf in enumerate(gts_folders):
-        g = glob.glob(gtf+'/*.png')
+        g = glob.glob(gtf+'/*_labellevel3Ids.png')
         p = [ j.replace(gtf, pred_folders[i]) for j in g]
         gts += g
         preds += p
@@ -111,9 +130,10 @@ def main(args):
         confusion_matrix += results[i]
 
 
-    print(confusion_matrix)
+    np.save('cm',confusion_matrix)
 
     ious = eval_ious(confusion_matrix)
+    np.save('ious', np.array(ious))
     for i in range(26):
         print(f'{class_names[i]}:\t\t\t\t {ious[i]*100}')
 

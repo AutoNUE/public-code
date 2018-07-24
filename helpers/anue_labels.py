@@ -37,7 +37,7 @@ Label = namedtuple( 'Label' , [
 
 
 labels = [
-    #       name                     id    csId     csTrainId     level3Id  category           level2Id      level1Id       hasInstances   ignoreInEval   color
+    #       name                     id    csId     csTrainId     level3Id  category           level2Id      level1Id  hasInstances   ignoreInEval   color
     Label(  'road'                 ,  0   ,  7 ,     0 ,           0  ,   'drivable'            , 0           , 0      , False        , False        , (128, 64,128)  ),
     Label(  'parking'              ,  1   ,  9 ,   255 ,           1  ,   'drivable'            , 1           , 0      , False        , False         , (250,170,160)  ),
     Label(  'drivable fallback'    ,  2   ,  6 ,   255 ,           1  ,   'drivable'            , 1           , 0      , False        , False         , ( 81,  0, 81)  ),
@@ -47,7 +47,7 @@ labels = [
     Label(  'non-drivable fallback',  5   , 22 ,     9 ,           3  ,   'non-drivable'        , 3           , 1      , False        , False        , (152,251,152)  ),
 
     Label(  'person'               ,  6   , 24 ,    11 ,           4  ,   'living-thing'        , 4           , 2      , True         , False        , (220, 20, 60)  ),
-    Label(  'animal'               ,  7   , 24 ,   255 ,           4  ,   'living-thing'        , 4           , 2      , True         , False        , (246, 198, 145)),
+    Label(  'animal'               ,  7   , 24 ,   255 ,           4  ,   'living-thing'        , 4           , 2      , True         , True        , (246, 198, 145)),
     Label(  'rider'                ,  8   , 25 ,    12 ,           5  ,   'living-thing'        , 5           , 2      , True         , False        , (255,  0,  0)  ),
 
     Label(  'motorcycle'           ,  9   , 32 ,    17 ,           6  ,   '2-wheeler'           , 6           , 3      , True         , False        , (  0,  0,230)  ),
@@ -59,9 +59,9 @@ labels = [
 
     Label(  'truck'                , 13   , 27 ,    14 ,           10 ,   'large-vehicle'       , 8           , 3      , True         , False        , (  0,  0, 70)  ),
     Label(  'bus'                  , 14   , 28 ,    15 ,           11 ,   'large-vehicle'       , 8           , 3      , True         , False        , (  0, 60,100)  ),
-    Label(  'caravan'              , 15   , 29 ,   255 ,           12 ,   'large-vehicle'       , 8           , 3      , True         , False         , (  0,  0, 90)  ),
-    Label(  'trailer'              , 16   , 30 ,   255 ,           12 ,   'large-vehicle'       , 8           , 3      , True         , False         , (  0,  0,110)  ),
-    Label(  'train'                , 17   , 31 ,    16 ,           12 ,   'large-vehicle'       , 8           , 3      , True         , False        , (  0, 80,100)  ),
+    Label(  'caravan'              , 15   , 29 ,   255 ,           12 ,   'large-vehicle'       , 8           , 3      , True         , True         , (  0,  0, 90)  ),
+    Label(  'trailer'              , 16   , 30 ,   255 ,           12 ,   'large-vehicle'       , 8           , 3      , True         , True         , (  0,  0,110)  ),
+    Label(  'train'                , 17   , 31 ,    16 ,           12 ,   'large-vehicle'       , 8           , 3      , True         , True        , (  0, 80,100)  ),
     Label(  'vehicle fallback'     , 18   , 31 ,   255 ,           12 ,   'large-vehicle'       , 8           , 3      , True         , False        , (136, 143, 153)),  
 
     Label(  'curb'                 , 19   ,255 ,   255 ,           13 ,   'barrier'             , 9           , 4      , False        , False        , (220, 190, 40)),
