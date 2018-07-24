@@ -78,7 +78,7 @@ python evaluate/evaluate_mIoU.py --gts $GT  --preds $PRED  --num-workers $C
 
 First generate instance label masks with ID_TYPE=id, as described before. Then
 ```bash
-python evaluate/evaluate_instance_segmentation.py --gts $GT  --preds $PRED  --num-workers $C
+python evaluate/evaluate_instance_segmentation.py --gts $GT  --preds $PRED 
 ```
 
 - GT is the folder path of ground truths containing <drive_no>/<img_no>_gtFine_labellevel3Ids.png 
