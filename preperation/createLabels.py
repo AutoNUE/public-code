@@ -53,7 +53,7 @@ def get_args():
     parser = ArgumentParser()
 
     # parser.add_argument('--port', type=int, default=8097)
-    parser.add_argument('--datadir', default="/ssd_scratch/cvit/girish.varma/dataset/anue")
+    parser.add_argument('--datadir', default="")
     parser.add_argument('--id-type', default='id')
     parser.add_argument('--color', type=bool, default=False) #train, instance, color, all
     parser.add_argument('--instance', type=bool, default=False) #train, instance, color, all

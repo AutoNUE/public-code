@@ -59,6 +59,8 @@ def createLabelImage(annotation, encoding, outline=None):
         background = name2label['unlabeled'].csId
     elif encoding == "csTrainId":
         background = name2label['unlabeled'].csTrainId
+    elif encoding == "level4Id":
+        background = name2label['unlabeled'].level4Id
     elif encoding == "level3Id":
         background = name2label['unlabeled'].level3Id
     elif encoding == "level2Id":
@@ -107,6 +109,8 @@ def createLabelImage(annotation, encoding, outline=None):
             val = name2label[label].csId
         elif encoding == "csTrainId":
             val = name2label[label].csTrainId
+        elif encoding == "level4Id":
+            val = name2label[label].level4Id
         elif encoding == "level3Id":
             val = name2label[label].level3Id
         elif encoding == "level2Id":
