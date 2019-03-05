@@ -9,7 +9,9 @@ Code for working with the dataset used for the [Scene Understanding Challenge fo
 
 **The code has been tested on python 3.6.4**
 
-## Dataset Structure
+## Dataset Structure 
+
+### Semantic Segmentation and Instance Segmentation
 
 The structure is similar to the cityscapes dataset. That is:
 - gtFine/{split}/{drive_no}/{6 digit img_id}_gtFine_polygons.json for ground truths
@@ -19,11 +21,17 @@ Furthermore for training, label masks needs to be generated as described bellow 
 - gtFine/{split}/{drive_no}/{6 digit img_id}_gtFine_labellevel3Ids.png
 - gtFine/{split}/{drive_no}/{6 digit img_id}_gtFine_instancelevel3Ids.png
 
+### Detection
+
+The structure is slightly similar to Pascal VOC dataset.
+- JPEGImages/<capture_category>/<drive sequence>/<>.jpg for images
+- Annotations/<capture_category>/<drive sequence>/<>.xml for Annotations
+
 ## Labels
 
 See helpers/anue_labels.py
 
-## Generate Label Masks (for training/evaluation)
+### Generate Label Masks (for training/evaluation) (Semantic Segmentation and Instance Segmentation)
 ```bash
 python preperation/createLabels.py --datadir $ANUE --id-type $IDTYPE --color [True|False] --instance [True|False] --num-workers $C
 ```
@@ -47,6 +55,15 @@ The generated files:
 
 - _gtFine_labelLevel3Ids.png will be used for semantic segmentation
 - _gtFine_instanceids.png will be used for instance segmentation
+
+### Detection
+
+We use subset of labels from helpers/anue_labels.py.
+
+We have person(level3Id: 4 , Trainable : True), rider (level3Id: 5, Trainable : True), car (level3Id: 9, Trainable : True), truck (level3Id: 10, Trainable : True),  bus(level3Id: 11, Trainable : True), motorcycle(level3Id: 6, Trainable : True), bicycle(level3Id: 7, Trainable : True), autorickshaw(level3Id: 8, Trainable : True), animal(level3Id: 4 , Trainable : True), traffic light(level3Id: 18, Trainable : True), traffic sign(level3Id: 19, Trainable : True), vehicle fallback (level3Id: 12, Trainable : False), caravan (level3Id: 12, Trainable : False), trailer (level3Id: 12, Trainable : False), train (level3Id: 12, Trainable : False).
+
+Note : We train based on level3Id’s and only those labels which are mentioned as trainable and report accuracies on them.
+
 
 ## Viewer
 
@@ -84,6 +101,10 @@ python evaluate/evaluate_instance_segmentation.py --gts $GT  --preds $PRED
 - GT is the folder path of ground truths containing <drive_no>/<img_no>_gtFine_labellevel3Ids.png 
 - PRED is the folder paths of predictions with the same folder structure and file names. The format for predictions is the same as the cityscapes dataset. That is a .txt file where each line is of the form "<instance_mask_png> <label id> <conf score>". Note that the ID_TYPE=id is used by this evaluation code.
 - C is the number of threads to run in parallel
+
+### Detection
+
+We expect to generated outputs in idd_det_<image_set>_<level3Id>.txt format. Here image_set can take {train,val,test}. while level3Id for all trainable labels has to present.
 
 
 ## Work in Progress
