@@ -104,7 +104,11 @@ python evaluate/evaluate_instance_segmentation.py --gts $GT  --preds $PRED
 
 ### Detection
 
-We expect to generated outputs in idd_det_<image_set>_<level3Id>.txt format. Here image_set can take {train,val,test}. while level3Id for all trainable labels has to present.
+```bash
+python evaluate/evaluate_detection.py --gts $GT  --preds $PRED 
+```
+- GT is the folder path of ground truths containing Annotations/<capture_category>/<drive sequence>/<>.xml
+- PRED is the folder path of predictions with generated outputs in idd_det_<image_set>_<level3Id>.txt format. Here image_set can take {train,val,test}, while level3Id for all trainable labels has to present.
 
 
 ## Work in Progress
@@ -115,4 +119,5 @@ We expect to generated outputs in idd_det_<image_set>_<level3Id>.txt format. Her
 ## Acknowledgement
 
 Some of the code was adapted from the cityscapes code at: https://github.com/mcordts/cityscapesScripts/ 
+Some of the code was adapted from https://github.com/rbgirshick/py-faster-rcnn
 
