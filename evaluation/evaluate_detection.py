@@ -32,6 +32,7 @@ def get_args():
     parser.add_argument('--gts', default="")
     parser.add_argument('--preds', default="")
     parser.add_argument('--image-set', default="test")
+    parser.add_argument('--output-dir', default="output")
     
     args = parser.parse_args()
 
@@ -76,7 +77,7 @@ def _do_eval(output_dir = 'output'):
     print('')
 
 def main(args):
-	_do_eval('output')
+	_do_eval(args.output_dir)
 	return
 
 if __name__ == '__main__':

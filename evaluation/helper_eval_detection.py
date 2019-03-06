@@ -1,7 +1,5 @@
 # --------------------------------------------------------
-# Fast/er R-CNN
-# Licensed under The MIT License [see LICENSE for details]
-# Written by Bharath Hariharan
+# Adapted from Fast/er R-CNN
 # --------------------------------------------------------
 
 import xml.etree.ElementTree as ET
