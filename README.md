@@ -111,10 +111,6 @@ python evaluate/evaluate_detection.py --gts $GT  --preds $PRED
 - PRED is the folder path of predictions with generated outputs in idd_det_<image_set>_<level3Id>.txt format. Here image_set can take {train,val,test}, while level3Id for all trainable labels has to present.
 
 
-## Work in Progress
-
-- mIoUs at level2 and level1
-- viewer tool for masks
 
 ## Acknowledgement
 
