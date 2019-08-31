@@ -2,7 +2,11 @@
 #
 
 # python imports
-import os, sys, getopt
+from anue_labels import name2label
+from annotation import Annotation
+import os
+import sys
+import getopt
 
 import numpy
 
@@ -16,21 +20,22 @@ except:
     sys.exit(-1)
 
 try:
-    import PIL.Image     as Image
+    import PIL.Image as Image
     import PIL.ImageDraw as ImageDraw
 except:
     print("Failed to import the image processing packages.")
     sys.exit(-1)
 
 
-
-sys.path.append( os.path.normpath( os.path.join( os.path.dirname( __file__ ) , '..' , 'helpers' ) ) )
-from annotation import Annotation
-from anue_labels     import name2label
+sys.path.append(os.path.normpath(os.path.join(
+    os.path.dirname(__file__), '..', 'helpers')))
 
 # Print the information
+
+
 def printHelp():
-    print('{} [OPTIONS] inputJson outputImg'.format(os.path.basename(sys.argv[0])))
+    print('{} [OPTIONS] inputJson outputImg'.format(
+        os.path.basename(sys.argv[0])))
     print('')
     print('Reads labels as polygons in JSON format and converts them to label images,')
     print('where each pixel has an ID that represents the ground truth label.')
@@ -40,6 +45,8 @@ def printHelp():
     print(' -t                 Use the "trainIDs" instead of the regular mapping. See "labels.py" for details.')
 
 # Print an error message and quit
+
+
 def printError(message):
     print('ERROR: {}'.format(message))
     print('')
@@ -48,9 +55,11 @@ def printError(message):
     sys.exit(-1)
 
 # Convert the given annotation to a label image
-def createLabelImage(annotation, encoding, outline=None):
+
+
+def createLabelImage(inJson, annotation, encoding, outline=None):
     # the size of the image
-    size = ( annotation.imgWidth , annotation.imgHeight )
+    size = (annotation.imgWidth, annotation.imgHeight)
 
     # the background
     if encoding == "id":
@@ -77,27 +86,30 @@ def createLabelImage(annotation, encoding, outline=None):
     if encoding == "color":
         labelImg = Image.new("RGBA", size, background)
     else:
+        # print(size, background)
         labelImg = Image.new("L", size, background)
 
     # a drawer to draw into the image
-    drawer = ImageDraw.Draw( labelImg )
+    drawer = ImageDraw.Draw(labelImg)
 
     # loop over all objects
     for obj in annotation.objects:
-        label   = obj.label
+        label = obj.label
         polygon = obj.polygon
 
         # If the object is deleted, skip it
-        if obj.deleted:
+        if obj.deleted or len(polygon) < 3:
             continue
 
         # If the label is not known, but ends with a 'group' (e.g. cargroup)
         # try to remove the s and see if that works
-        if ( not label in name2label ) and label.endswith('group'):
+        if (not label in name2label) and label.endswith('group'):
             label = label[:-len('group')]
 
         if not label in name2label:
-            printError( "Label '{}' not known.".format(label) )
+            print("Label '{}' not known.".format(label))
+            tqdm.write("Something wrong in: " + inJson)
+            continue
 
         # If the ID is negative that polygon should not be drawn
         if name2label[label].id < 0:
@@ -122,10 +134,10 @@ def createLabelImage(annotation, encoding, outline=None):
 
         try:
             if outline:
-                
-                drawer.polygon( polygon, fill=val, outline=outline )
+
+                drawer.polygon(polygon, fill=val, outline=outline)
             else:
-                drawer.polygon( polygon, fill=val )
+                drawer.polygon(polygon, fill=val)
                 # print(label, val)
         except:
             print("Failed to draw polygon with label {}".format(label))
@@ -142,20 +154,24 @@ def createLabelImage(annotation, encoding, outline=None):
 #     - "ids"      : classes are encoded using the regular label IDs
 #     - "trainIds" : classes are encoded using the training IDs
 #     - "color"    : classes are encoded using the corresponding colors
-def json2labelImg(inJson,outImg,encoding="ids"):
+
+
+def json2labelImg(inJson, outImg, encoding="ids"):
     annotation = Annotation()
     annotation.fromJsonFile(inJson)
-    labelImg   = createLabelImage( annotation , encoding )
-    labelImg.save( outImg )
+    labelImg = createLabelImage(inJson, annotation, encoding)
+    labelImg.save(outImg)
 
 # The main method, if you execute this script directly
 # Reads the command line arguments and calls the method 'json2labelImg'
+
+
 def main(argv):
     trainIds = False
     try:
-        opts, args = getopt.getopt(argv,"ht")
+        opts, args = getopt.getopt(argv, "ht")
     except getopt.GetoptError:
-        printError( 'Invalid arguments' )
+        printError('Invalid arguments')
     for opt, arg in opts:
         if opt == '-h':
             printHelp()
@@ -163,22 +179,23 @@ def main(argv):
         elif opt == '-t':
             trainIds = True
         else:
-            printError( "Handling of argument '{}' not implementend".format(opt) )
+            printError("Handling of argument '{}' not implementend".format(opt))
 
     if len(args) == 0:
-        printError( "Missing input json file" )
+        printError("Missing input json file")
     elif len(args) == 1:
-        printError( "Missing output image filename" )
+        printError("Missing output image filename")
     elif len(args) > 2:
-        printError( "Too many arguments" )
+        printError("Too many arguments")
 
     inJson = args[0]
     outImg = args[1]
 
     if trainIds:
-        json2labelImg( inJson , outImg , "trainIds" )
+        json2labelImg(inJson, outImg, "trainIds")
     else:
-        json2labelImg( inJson , outImg )
+        json2labelImg(inJson, outImg)
+
 
 # call the main method
 if __name__ == "__main__":

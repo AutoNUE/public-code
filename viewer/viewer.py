@@ -108,6 +108,7 @@ def get_args():
 # The main method
 def main(args):
     label_path_list = glob.glob(args.datadir+f'/gtFine/*/*/*_labelids.png')
+    print(len(label_path_list))
     random.shuffle(label_path_list)
     for l in label_path_list:
         
