@@ -31,7 +31,7 @@ The structure is slightly similar to Pascal VOC dataset.
 
 See helpers/anue_labels.py
 
-### Generate Label Masks (for training/evaluation) (Semantic Segmentation and Instance Segmentation)
+### Generate Label Masks (for training/evaluation) (Semantic/Instance/Panoptic Segmentation)
 ```bash
 python preperation/createLabels.py --datadir $ANUE --id-type $IDTYPE --color [True|False] --instance [True|False] --num-workers $C
 ```
@@ -40,6 +40,7 @@ python preperation/createLabels.py --datadir $ANUE --id-type $IDTYPE --color [Tr
 - IDTYPE can be id, csId, csTrainId, level3Id, level2Id, level1Id. 
 - color True  generates the color masks
 - instance True generates the instance masks with the id given by IDTYPE
+- panoptic True generates the 2 channel panoptic masks (semantic map in 1 channel and instance in the other) with the id given by IDTYPE
 - C is the number of threads to run in parallel
 
 For the semantic segmentation challenge, masks should be generated using IDTYPE of level3Id and used for training models (similar to trainId in cityscapes). This can be done by the command:
@@ -55,6 +56,7 @@ The generated files:
 
 - _gtFine_labelLevel3Ids.png will be used for semantic segmentation
 - _gtFine_instanceids.png will be used for instance segmentation
+- _gtFine_panopticLevel3Ids.png will be used for panoptic segmentation
 
 ### Detection
 

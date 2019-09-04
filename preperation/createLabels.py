@@ -6,7 +6,9 @@ from __future__ import print_function
 import os
 import glob
 import sys
-
+from scipy.misc import imread, imsave
+import numpy as np
+from numpngw import write_png
 
 from json2labelImg import json2labelImg
 from json2instanceImg import json2instanceImg
@@ -51,18 +53,35 @@ def process_folder(f):
             tqdm.write("Failed to convert: {}".format(f))
             raise
 
+    if args.panoptic and args.instance:
+        dst = f.replace("_polygons.json", f"_panoptic{args.id_type}s.png")        
+        seg_anno = f.replace("_polygons.json", f"_label{args.id_type}s.png")
+        inst_anno = f.replace("_polygons.json", f"_instance{args.id_type}s.png")
+
+        seg_tail = f"_gtFine_label{args.id_type}s.png"
+        inst_tail = f"_gtFine_instance{args.id_type}s.png"
+        pan_tail = f"_gtFine_panoptic{args.id_type}s.png"
+
+        seg_img = imread(seg_anno)
+        inst_img = imread(inst_anno)
+        sh = (seg_img.shape[0], seg_img.shape[1],2)
+        twoch_img = np.zeros(sh, dtype=np.uint16)
+        twoch_img[:,:,0] = seg_img
+        twoch_img[:,:,1] = inst_img
+        write_png(seg_anno.replace(seg_tail, pan_tail), twoch_img)
+
+
+
+
 
 def get_args():
     parser = ArgumentParser()
 
-    # parser.add_argument('--port', type=int, default=8097)
     parser.add_argument('--datadir', default="")
     parser.add_argument('--id-type', default='id')
-    # train, instance, color, all
     parser.add_argument('--color', type=bool, default=False)
-    # train, instance, color, all
-    parser.add_argument('--instance', type=bool, default=False)
-    # train, instance, color, all
+    parser.add_argument('--instance', type=bool, default=False)    
+    parser.add_argument('--panoptic', type=bool, default=False)
     parser.add_argument('--num-workers', type=int, default=10)
 
     args = parser.parse_args()
