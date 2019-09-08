@@ -78,10 +78,10 @@ def get_args():
     parser = ArgumentParser()
 
     parser.add_argument('--datadir', default="")
-    parser.add_argument('--id-type', default='id')
+    parser.add_argument('--id-type', default='level3Id')
     parser.add_argument('--color', type=bool, default=False)
-    parser.add_argument('--instance', type=bool, default=False)    
-    parser.add_argument('--panoptic', type=bool, default=False)
+    parser.add_argument('--instance', type=bool, default=True)    
+    parser.add_argument('--panoptic', type=bool, default=True)
     parser.add_argument('--num-workers', type=int, default=10)
 
     args = parser.parse_args()

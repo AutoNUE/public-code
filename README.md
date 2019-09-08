@@ -92,6 +92,19 @@ python evaluate/evaluate_mIoU.py --gts $GT  --preds $PRED  --num-workers $C
 - PRED is the folder paths of predictions with the same folder structure and file names.
 - C is the number of threads to run in parallel
 
+
+### Constrained Semantic Segmentation
+
+First generate labels masks with level1Ids as described before. Then
+```bash
+python evaluate/idd_lite_evaluate_mIoU.py --gts $GT  --preds $PRED  --num-workers $C
+```
+
+- GT is the folder path of ground truths containing <drive_no>/<img_no>_gtFine_labellevel3Ids.png 
+- PRED is the folder paths of predictions with the same folder structure and file names.
+- C is the number of threads to run in parallel
+
+
 ### Instance Segmentation
 
 
