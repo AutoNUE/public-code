@@ -203,6 +203,8 @@ def main(args):
     for i, gtf in enumerate(gts_folders):
         
         g = glob.glob(gtf+'/*_label.png')
+        g = [ lab for lab in g if not lab.endswith("_inst_label.png") ]
+        
         # print(g)
         p = [ j.replace(gtf, pred_folders[i]) for j in g] #.replace('_gtFine_labellevel3Ids.png','_leftImg8bit.png')
         gts += g

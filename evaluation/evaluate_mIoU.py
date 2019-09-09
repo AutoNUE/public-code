@@ -15,7 +15,7 @@ def get_args():
     parser.add_argument('--gts', default="/ssd_scratch/cvit/girish.varma/dataset/anue_test/gtFine/test")
     parser.add_argument('--preds', default="")
     parser.add_argument('--prefix', default="_gtFine_labellevel3Ids.png")
-    parser.add_argument('--res', type=int, default=1080)
+    parser.add_argument('--res', type=int, default=720)
     parser.add_argument('--num-workers', type=int, default=10)
     
     args = parser.parse_args()
