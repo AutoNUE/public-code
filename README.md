@@ -100,7 +100,7 @@ First generate labels masks with level1Ids as described before. Then
 python evaluate/idd_lite_evaluate_mIoU.py --gts $GT  --preds $PRED  --num-workers $C
 ```
 
-- GT is the folder path of ground truths containing <drive_no>/<img_no>_gtFine_labellevel3Ids.png 
+- GT is the folder path of ground truths containing <drive_no>/<img_no>_gtFine_labellevel1Ids.png 
 - PRED is the folder paths of predictions with the same folder structure and file names.
 - C is the number of threads to run in parallel
 
