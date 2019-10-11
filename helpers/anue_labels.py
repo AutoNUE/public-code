@@ -22,7 +22,7 @@ Label = namedtuple( 'Label' , [
 
     'level4Id'    , 
     'level3Id'    , 
-    'level2IdName', 
+    'category', 
     'level2Id'    , 
     'level1Id'    , 
 
@@ -122,9 +122,9 @@ if __name__ == "__main__":
         
     print("List of IDD labels:")
     print("")
-    print("    {:>21} | {:>3} | {:>7} | {:>14} | {:>10} | {:>12} | {:>12}".format( 'name', 'id', 'csId', 'csTrainId', 'level4Id', 'level3Id', 'level2IdName', 'level2Id', 'ldevel1Id', 'hasInstances', 'ignoreInEval', 'color' ))
+    print("    {:>21} | {:>3} | {:>7} | {:>14} | {:>10} | {:>12} | {:>12}".format( 'name', 'id', 'csId', 'csTrainId', 'level4Id', 'level3Id', 'category', 'level2Id', 'ldevel1Id', 'hasInstances', 'ignoreInEval', 'color' ))
     print("    " + ('-' * 98))
     for label in labels:
-        print("    {:>21} | {:>3} | {:>7} | {:>14} | {:>10} | {:>12} | {:>12}".format( label.name, label.id, label.csId, label.csTrainId, label.level4Id, label.level3Id, label.level2IdName, label.level2Id, label.level1Id, label.hasInstances, label.ignoreInEval, label.color ))
+        print("    {:>21} | {:>3} | {:>7} | {:>14} | {:>10} | {:>12} | {:>12}".format( label.name, label.id, label.csId, label.csTrainId, label.level4Id, label.level3Id, label.category, label.level2Id, label.level1Id, label.hasInstances, label.ignoreInEval, label.color ))
     print("")
     
