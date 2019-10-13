@@ -40,7 +40,7 @@ python preperation/createLabels.py --datadir $ANUE --id-type $IDTYPE --color [Tr
 - IDTYPE can be id, csId, csTrainId, level3Id, level2Id, level1Id. 
 - color True  generates the color masks
 - instance True generates the instance masks with the id given by IDTYPE
-- panoptic True generates the 2 channel panoptic masks (semantic map in 1 channel and instance in the other) with the id given by IDTYPE
+- panoptic True generates panoptic masks in the format similar to COCO. See the modified evaluation scripts here: https://github.com/AutoNUE/panopticapi
 - C is the number of threads to run in parallel
 
 For the semantic segmentation challenge, masks should be generated using IDTYPE of level3Id and used for training models (similar to trainId in cityscapes). This can be done by the command:
