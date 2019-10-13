@@ -5,7 +5,8 @@ from __future__ import print_function
 from __future__ import unicode_literals
 import pdb
 from tqdm import tqdm
-import os, sys
+import os
+import sys
 import json
 import glob
 import numpy as np
@@ -18,7 +19,8 @@ try:
     # sys.path.append('./cityscapesScripts/')
     from anue_labels import labels, id2label
 except Exception:
-    raise Exception("Please load Cityscapes scripts from https://github.com/mcordts/cityscapesScripts")
+    raise Exception(
+        "Please load Cityscapes scripts from https://github.com/mcordts/cityscapesScripts")
 
 original_format_folder = '/home/chrizandr/idd20kII/gtFine/val/'
 # folder to store panoptic PNGs
@@ -30,12 +32,12 @@ out_file = 'cityscapes_panoptic_val.json'
 def process_image(working_idx):
     global file_list, categories_dic, output_folder
     f = file_list[working_idx]
-    print(f)
+    # print(f)
     images = []
     img = Image.open(f)
     img = img.resize((1280, 720))
     original_format = np.array(img)
-    print("Processing file", f)
+    # print("Processing file", f)
     file_name = f.split('/')[-1]
     image_id = file_name.rsplit('_', 2)[0]
     image_filename = '{}_gtFine_instancelevel3Ids.png'.format(image_id)
@@ -46,7 +48,8 @@ def process_image(working_idx):
              "height": original_format.shape[0],
              "file_name": image_filename}
 
-    pan_format = np.zeros((original_format.shape[0], original_format.shape[1], 3), dtype=np.uint8)
+    pan_format = np.zeros(
+        (original_format.shape[0], original_format.shape[1], 3), dtype=np.uint8)
     id_generator = IdGenerator(categories_dict)
 
     idx = 0
@@ -67,7 +70,7 @@ def process_image(working_idx):
         segment_id, color = id_generator.get_id_and_color(semantic_id)
         pan_format[mask] = color
 
-        area = np.sum(mask) # segment area computation
+        area = np.sum(mask)  # segment area computation
 
         # bbox computation for a segment
         hor = np.sum(mask, axis=0)
@@ -113,7 +116,8 @@ def panoptic_converter(num_workers, original_format_folder, out_folder, out_file
 
     categories_dict = {cat['id']: cat for cat in categories}
 
-    file_list = sorted(glob.glob(os.path.join(original_format_folder, '*/*_gtFine_instancelevel3Ids.png')))[0:10]
+    file_list = sorted(glob.glob(os.path.join(
+        original_format_folder, '*/*_gtFine_instancelevel3Ids.png')))
 
     images = []
     annotations = []
@@ -130,7 +134,7 @@ def panoptic_converter(num_workers, original_format_folder, out_folder, out_file
     d = {'images': images,
          'annotations': annotations,
          'categories': categories,
-        }
+         }
     save_json(d, out_file)
 
 
