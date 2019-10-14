@@ -40,7 +40,7 @@ def process_image(working_idx):
     # print("Processing file", f)
     file_name = f.split('/')[-1]
     image_id = file_name.rsplit('_', 2)[0]
-    image_filename = '{}_{}_gtFine_instancelevel3Ids.png'.format(
+    image_filename = '{}_{}_gtFine_panopticlevel3Ids.png'.format(
         f.split('/')[-2], image_id)
     # pdb.set_trace()
     # image entry, id for image is its filename without extension
