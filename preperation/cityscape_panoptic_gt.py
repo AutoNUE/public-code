@@ -90,7 +90,8 @@ def process_image(working_idx):
                           "bbox": [int(x) for x in bbox],
                           "iscrowd": is_crowd})
 
-    Image.fromarray(pan_format).save(os.path.join(output_folder, file_name))
+    Image.fromarray(pan_format).save(
+        os.path.join(output_folder, image_filename))
     return image, segm_info
 
 
@@ -125,6 +126,10 @@ def panoptic_converter(num_workers, original_format_folder, out_folder, out_file
     annotations = []
     pool = Pool(num_workers)
     files = [x for x in range(len(file_list))]
+    tqdm.write(
+        "Processing {} annotation files for Panoptic Segmentation".format(len(files)))
+
+
     # results = pool.map(process_pred_gt_pair, pairs)
     results = list(tqdm(pool.imap(process_image, files), total=len(files)))
     for img, segm_info in results:
