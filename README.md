@@ -14,12 +14,12 @@ Code for working with the dataset used for the [Scene Understanding Challenge fo
 ### Semantic Segmentation and Instance Segmentation
 
 The structure is similar to the cityscapes dataset. That is:
-- gtFine/{split}/{drive_no}/{6 digit img_id}_gtFine_polygons.json for ground truths
-- leftImg8bit/{split}/{drive_no}/{6 digit img_id}_leftImg8bit.png for image frames
+- gtFine/{split}/{drive_no}/{img_id}_gtFine_polygons.json for ground truths
+- leftImg8bit/{split}/{drive_no}/{img_id}_leftImg8bit.png for image frames
 
 Furthermore for training, label masks needs to be generated as described bellow resulting in the following files:
-- gtFine/{split}/{drive_no}/{6 digit img_id}_gtFine_labellevel3Ids.png
-- gtFine/{split}/{drive_no}/{6 digit img_id}_gtFine_instancelevel3Ids.png
+- gtFine/{split}/{drive_no}/{img_id}_gtFine_labellevel3Ids.png
+- gtFine/{split}/{drive_no}/{img_id}_gtFine_instancelevel3Ids.png
 
 ### Detection
 
