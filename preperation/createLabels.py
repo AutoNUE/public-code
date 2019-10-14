@@ -85,20 +85,21 @@ def main(args):
         os.path.dirname(__file__), '..', 'helpers')))
     # how to search for all ground truth
     searchFine = os.path.join(args.datadir, "gtFine",
-                                "*", "*", "*_gt*_polygons.json")
+                              "*", "*", "*_gt*_polygons.json")
 
     # search files
     filesFine = glob.glob(searchFine)
     filesFine.sort()
 
-    files = filesFine
+    files = filesFine[:10]
 
     if not files:
         tqdm.writeError(
             "Did not find any files. Please consult the README.")
 
     # a bit verbose
-    tqdm.write("Processing {} annotation files".format(len(files)))
+    tqdm.write(
+        "Processing {} annotation files for Sematic/Instance Segmentation".format(len(files)))
 
     # iterate through files
     progress = 0
@@ -114,9 +115,11 @@ def main(args):
         tqdm(pool.imap(process_folder, files), total=len(files)))
     pool.close()
     pool.join()
-    
+
     if args.panoptic:
-        for split in ['train', 'val']:
+        for split in ['test']:
+
+            tqdm.write("Panoptic Segmentation {} split".format(split))
             folder_name = os.path.join(args.datadir, 'gtFine')
             output_folder = os.path.join(folder_name, split + "_panoptic")
             os.makedirs(output_folder, exist_ok=True)
