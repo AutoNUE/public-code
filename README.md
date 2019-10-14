@@ -11,16 +11,26 @@ Code for working with the dataset used for the [Scene Understanding Challenge fo
 
 ## Dataset Structure 
 
+The structure is similar to the cityscapes dataset. That is:
+```
+gtFine/{split}/{drive_no}/{img_id}_gtFine_polygons.json for ground truths
+leftImg8bit/{split}/{drive_no}/{img_id}_leftImg8bit.png for image frames
+```
 ### Semantic Segmentation and Instance Segmentation
 
-The structure is similar to the cityscapes dataset. That is:
-- gtFine/{split}/{drive_no}/{6 digit img_id}_gtFine_polygons.json for ground truths
-- leftImg8bit/{split}/{drive_no}/{6 digit img_id}_leftImg8bit.png for image frames
-
 Furthermore for training, label masks needs to be generated as described bellow resulting in the following files:
-- gtFine/{split}/{drive_no}/{6 digit img_id}_gtFine_labellevel3Ids.png
-- gtFine/{split}/{drive_no}/{6 digit img_id}_gtFine_instancelevel3Ids.png
+```
+gtFine/{split}/{drive_no}/{img_id}_gtFine_labellevel3Ids.png
+gtFine/{split}/{drive_no}/{img_id}_gtFine_instancelevel3Ids.png
+```
 
+### Panoptic Challenge
+
+Furthermore for training, panoptic masks needs to be generated as described bellow resulting in the following files:
+```
+gtFine/{split}_panoptic/{drive_no}_{img_id}_gtFine_panopticlevel3Ids.png
+gtFine/{split}_panoptic.json
+```
 ### Detection
 
 The structure is slightly similar to Pascal VOC dataset.
@@ -56,7 +66,7 @@ The generated files:
 
 - _gtFine_labelLevel3Ids.png will be used for semantic segmentation
 - _gtFine_instanceids.png will be used for instance segmentation
-- _gtFine_panopticLevel3Ids.png will be used for panoptic segmentation
+- _gtFine_panopticLevel3Ids.png will be used for panoptic segmentation under the folder gtFine/{split}_panoptic and the gtFine/{split}_panoptic.json
 
 ### Detection
 
@@ -117,6 +127,10 @@ python evaluate/evaluate_instance_segmentation.py --gts $GT  --preds $PRED
 - PRED is the folder paths of predictions with the same folder structure and file names. The format for predictions is the same as the cityscapes dataset. That is a .txt file where each line is of the form "<instance_mask_png> <label id> <conf score>". Note that the ID_TYPE=id is used by this evaluation code.
 - C is the number of threads to run in parallel
 
+### Panoptic Segmentation
+
+Please use https://github.com/AutoNUE/panopticapi
+
 ### Detection
 
 ```bash
@@ -131,4 +145,5 @@ python evaluate/evaluate_detection.py --gts $GT  --preds $PRED
 
 Some of the code was adapted from the cityscapes code at: https://github.com/mcordts/cityscapesScripts/ 
 Some of the code was adapted from https://github.com/rbgirshick/py-faster-rcnn
+Some of the code was adapted from https://github.com/cocodataset/panopticapi
 
