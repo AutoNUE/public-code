@@ -119,7 +119,7 @@ def panoptic_converter(num_workers, original_format_folder, out_folder, out_file
     categories_dict = {cat['id']: cat for cat in categories}
 
     file_list = sorted(glob.glob(os.path.join(
-        original_format_folder, '*/*_gtFine_instancelevel3Ids.png')))[0:10]
+        original_format_folder, '*/*_gtFine_instancelevel3Ids.png')))
 
     images = []
     annotations = []
