@@ -91,7 +91,7 @@ def main(args):
     filesFine = glob.glob(searchFine)
     filesFine.sort()
 
-    files = filesFine[:10]
+    files = filesFine
 
     if not files:
         tqdm.writeError(
@@ -117,7 +117,7 @@ def main(args):
     pool.join()
 
     if args.panoptic:
-        for split in ['test']:
+        for split in ['train', 'val']:
 
             tqdm.write("Panoptic Segmentation {} split".format(split))
             folder_name = os.path.join(args.datadir, 'gtFine')
