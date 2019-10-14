@@ -80,49 +80,7 @@ def get_args():
 def main(args):
     if args.panoptic:
         args.instance = True
-<<<<<<< HEAD
         for split in ['train', 'val']:
-=======
-    sys.path.append(os.path.normpath(os.path.join(
-        os.path.dirname(__file__), '..', 'helpers')))
-    # how to search for all ground truth
-    searchFine = os.path.join(args.datadir, "gtFine",
-                              "*", "*", "*_gt*_polygons.json")
-
-    # search files
-    filesFine = glob.glob(searchFine)
-    filesFine.sort()
-
-    files = filesFine[:10]
-
-    if not files:
-        tqdm.writeError(
-            "Did not find any files. Please consult the README.")
-
-    # a bit verbose
-    tqdm.write(
-        "Processing {} annotation files for Sematic/Instance Segmentation".format(len(files)))
-
-    # iterate through files
-    progress = 0
-    tqdm.write("Progress: {:>3} %".format(
-        progress * 100 / len(files)), end=' ')
-
-    from multiprocessing import Pool
-    import time
-
-    pool = Pool(args.num_workers)
-    # results = pool.map(process_pred_gt_pair, pairs)
-    results = list(
-        tqdm(pool.imap(process_folder, files), total=len(files)))
-    pool.close()
-    pool.join()
-
-    if args.panoptic:
-        for split in ['test']:
-
-            tqdm.write("Panoptic Segmentation {} split".format(split))
->>>>>>> 377a067c6887fd69ede779b17375be41277961f6
             folder_name = os.path.join(args.datadir, 'gtFine')
             output_folder = os.path.join(folder_name, split + "_panoptic")
             os.makedirs(output_folder, exist_ok=True)
