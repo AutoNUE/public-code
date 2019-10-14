@@ -11,15 +11,21 @@ Code for working with the dataset used for the [Scene Understanding Challenge fo
 
 ## Dataset Structure 
 
-### Semantic Segmentation and Instance Segmentation
-
 The structure is similar to the cityscapes dataset. That is:
 - gtFine/{split}/{drive_no}/{img_id}_gtFine_polygons.json for ground truths
 - leftImg8bit/{split}/{drive_no}/{img_id}_leftImg8bit.png for image frames
 
+### Semantic Segmentation and Instance Segmentation
+
 Furthermore for training, label masks needs to be generated as described bellow resulting in the following files:
 - gtFine/{split}/{drive_no}/{img_id}_gtFine_labellevel3Ids.png
 - gtFine/{split}/{drive_no}/{img_id}_gtFine_instancelevel3Ids.png
+
+### Panoptic Challenge
+
+Furthermore for training, panoptic masks needs to be generated as described bellow resulting in the following files:
+- gtFine/{split}_panoptic/{drive_no}_{img_id}_gtFine_panopticlevel3Ids.png
+- gtFine/{split}_panoptic.json
 
 ### Detection
 
@@ -56,7 +62,7 @@ The generated files:
 
 - _gtFine_labelLevel3Ids.png will be used for semantic segmentation
 - _gtFine_instanceids.png will be used for instance segmentation
-- _gtFine_panopticLevel3Ids.png will be used for panoptic segmentation
+- _gtFine_panopticLevel3Ids.png will be used for panoptic segmentation under the folder gtFine/{split}_panoptic and the gtFine/{split}_panoptic.json
 
 ### Detection
 
