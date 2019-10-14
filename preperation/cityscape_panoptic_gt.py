@@ -30,21 +30,22 @@ out_file = 'cityscapes_panoptic_val.json'
 
 
 def process_image(working_idx):
+    """Worker function."""
     global file_list, categories_dic, output_folder
     f = file_list[working_idx]
     # print(f)
-    images = []
     img = Image.open(f)
     img = img.resize((1280, 720))
     original_format = np.array(img)
     # print("Processing file", f)
-    file_name = f.split('/')[-1]
+    print(f)
+    folder_id = f.split('/')[-2]
+    file_name = folder_id + "_" + f.split('/')[-1]
     image_id = file_name.rsplit('_', 2)[0]
-    image_filename = '{}_{}_gtFine_instancelevel3Ids.png'.format(
-        f.split('/')[-2], image_id)
+    image_filename = '{}_gtFine_instancelevel3Ids.png'.format(image_id)
     # pdb.set_trace()
     # image entry, id for image is its filename without extension
-    image = {"id": image_filename,
+    image = {"id": image_id,
              "width": original_format.shape[1],
              "height": original_format.shape[0],
              "file_name": image_filename}
@@ -53,7 +54,6 @@ def process_image(working_idx):
         (original_format.shape[0], original_format.shape[1], 3), dtype=np.uint8)
     id_generator = IdGenerator(categories_dict)
 
-    idx = 0
     l = np.unique(original_format)
     segm_info = []
     for el in l:
@@ -96,6 +96,7 @@ def process_image(working_idx):
 
 
 def panoptic_converter(num_workers, original_format_folder, out_folder, out_file):
+    """Convert to panoptic segmentation format."""
     global file_list, categories_dict, output_folder
     output_folder = out_folder
     if not os.path.isdir(out_folder):
