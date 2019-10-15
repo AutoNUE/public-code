@@ -40,13 +40,7 @@ def add_to_confusion_matrix(gt, pred, mat):
     pred = pred.flatten()
     gt = gt.flatten()
 
-
-    for (gtp,predp) in zip(gt, pred):
-        if gtp == 255 or gtp >7 :
-            gtp = 7
-        if predp == 255 or predp >7:
-            predp = 7
-        mat[gtp, predp] += 1
+    np.add.at(mat.reshape(-1),mat.shape[1]*gt.copy().clip(max=7).astype(np.uint16)+pred.copy().clip(max=7).astype(np.uint16),1)
 
     return mat
 

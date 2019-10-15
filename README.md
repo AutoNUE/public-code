@@ -95,7 +95,7 @@ TODO: Make the color map more sensible.
 
 First generate labels masks with level3Ids as described before. Then
 ```bash
-python evaluate/evaluate_mIoU.py --gts $GT  --preds $PRED  --num-workers $C
+python evaluation/evaluate_mIoU.py --gts $GT  --preds $PRED  --num-workers $C
 ```
 
 - GT is the folder path of ground truths containing <drive_no>/<img_no>_gtFine_labellevel3Ids.png 
@@ -107,7 +107,7 @@ python evaluate/evaluate_mIoU.py --gts $GT  --preds $PRED  --num-workers $C
 
 First generate labels masks with level1Ids as described before. Then
 ```bash
-python evaluate/idd_lite_evaluate_mIoU.py --gts $GT  --preds $PRED  --num-workers $C
+python evaluation/idd_lite_evaluate_mIoU.py --gts $GT  --preds $PRED  --num-workers $C
 ```
 
 - GT is the folder path of ground truths containing <drive_no>/<img_no>_gtFine_labellevel1Ids.png 
@@ -120,7 +120,7 @@ python evaluate/idd_lite_evaluate_mIoU.py --gts $GT  --preds $PRED  --num-worker
 
 First generate instance label masks with ID_TYPE=id, as described before. Then
 ```bash
-python evaluate/evaluate_instance_segmentation.py --gts $GT  --preds $PRED 
+python evaluation/evaluate_instance_segmentation.py --gts $GT  --preds $PRED 
 ```
 
 - GT is the folder path of ground truths containing <drive_no>/<img_no>_gtFine_labellevel3Ids.png 
@@ -134,7 +134,7 @@ Please use https://github.com/AutoNUE/panopticapi
 ### Detection
 
 ```bash
-python evaluate/evaluate_detection.py --gts $GT  --preds $PRED 
+python evaluation/evaluate_detection.py --gts $GT  --preds $PRED 
 ```
 - GT is the folder path of ground truths containing Annotations/<capture_category>/<drive sequence>/<>.xml
 - PRED is the folder path of predictions with generated outputs in idd_det_<image_set>_<level3Id>.txt format. Here image_set can take {train,val,test}, while level3Id for all trainable labels has to present.
