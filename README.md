@@ -18,7 +18,7 @@ leftImg8bit/{split}/{drive_no}/{img_id}_leftImg8bit.png for image frames
 ```
 ### Semantic Segmentation and Instance Segmentation
 
-Furthermore for training, label masks needs to be generated as described bellow resulting in the following files:
+Furthermore for training, label masks needs to be generated as described below resulting in the following files:
 ```
 gtFine/{split}/{drive_no}/{img_id}_gtFine_labellevel3Ids.png
 gtFine/{split}/{drive_no}/{img_id}_gtFine_instancelevel3Ids.png
@@ -26,7 +26,7 @@ gtFine/{split}/{drive_no}/{img_id}_gtFine_instancelevel3Ids.png
 
 ### Panoptic Challenge
 
-Furthermore for training, panoptic masks needs to be generated as described bellow resulting in the following files:
+Furthermore for training, panoptic masks needs to be generated as described below resulting in the following files:
 ```
 gtFine/{split}_panoptic/{drive_no}_{img_id}_gtFine_panopticlevel3Ids.png
 gtFine/{split}_panoptic.json
