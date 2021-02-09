@@ -24,7 +24,7 @@ def getImg(lbl,dd):
 
 def prepMapillary(dd,sd):
     assert dd.exists() , f'dataset directory doesn\'t exist'
-    d_strat = pd.read_csv('./core/csvs/stratified_mapillary.csv',header=None)
+    d_strat = pd.read_csv('./domain_adaptation/source/core/csvs/stratified_mapillary.csv',header=None)
     strp = '/raid/datasets/SemanticSegmentation/domain_adaptation/Mapillary'
 
     lbls = sd/'Mapillary/labels'

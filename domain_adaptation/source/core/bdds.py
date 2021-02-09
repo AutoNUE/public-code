@@ -14,7 +14,7 @@ parser.add_argument("savedir",help="path to save directory")
 #dd = Path('/raid/datasets/SemanticSegmentation/domain_adaptation/bdds/')
 #lbl = '/raid/datasets/SemanticSegmentation/domain_adaptation/bdds/labels/train/0004a4c0-d4dff0ad_train_id.png'
 #
-############
+############/home/cvit/rohit/autoneu/github/public-code/domain_adaptation/source/core
 
 def getImg(lbl,dd):
     '''
@@ -26,7 +26,7 @@ def getImg(lbl,dd):
 
 def prepBDD(dd,sd):
     assert dd.exists() , f'dataset directory doesn\'t exist'
-    d_strat = pd.read_csv('./core/csvs/stratified_bdds.csv',header=None)
+    d_strat = pd.read_csv('./domain_adaptation/source/core/csvs/stratified_bdds.csv',header=None)
     strp = '/raid/datasets/SemanticSegmentation/domain_adaptation/bdds/'
 
     lbls = sd/'BDD/labels'

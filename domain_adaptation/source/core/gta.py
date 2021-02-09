@@ -23,7 +23,7 @@ def getImg(lbl,dd):
 
 def prepGTA(dd,sd):
     assert dd.exists() , f'dataset directory doesn\'t exist'
-    d_strat = pd.read_csv('./core/csvs/stratified_GTA.csv',header=None)
+    d_strat = pd.read_csv('./domain_adaptation/source/core/csvs/stratified_GTA.csv',header=None)
     strp = '/raid/datasets/SemanticSegmentation/domain_adaptation/GTA5/labels'
 
     lbls = sd/'GTA/labels'
