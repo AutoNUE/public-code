@@ -20,3 +20,12 @@ chmod +x domain_adaptation/source/prep_all.sh
 ```
 
 This will create a folder "domain_adaptation/source/source_datasets_dir/" where you will find the images and annotations for the source dataset to be used for this competetion.
+
+# Target datasets:
+
+Following commands are updated for the target labels of challenges other than supervised domain adaptation and semantic segmentation, **run them from public-code**:
+'''
+python3 preperation/createLabels.py --datadir $ANUE --id-type level3Id --num-workers 4 --semisup_da True
+python3 preperation/createLabels.py --datadir $ANUE --id-type level3Id --num-workers 4 --weaksup_da True
+python3 preperation/createLabels.py --datadir $ANUE --id-type level3Id --num-workers 4 --unsup_da True
+'''
