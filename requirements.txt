@@ -1,0 +1,4 @@
+numpy
+pandas==1.2.1
+tqdm
+scipy
