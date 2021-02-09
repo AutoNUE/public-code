@@ -24,8 +24,11 @@ This will create a folder "domain_adaptation/source/source_datasets_dir/" where 
 # Target datasets:
 
 Following commands are updated for the target labels of challenges other than supervised domain adaptation and semantic segmentation, **run them from public-code**:
-'''
+
+```
 python3 preperation/createLabels.py --datadir $ANUE --id-type level3Id --num-workers 4 --semisup_da True
 python3 preperation/createLabels.py --datadir $ANUE --id-type level3Id --num-workers 4 --weaksup_da True
 python3 preperation/createLabels.py --datadir $ANUE --id-type level3Id --num-workers 4 --unsup_da True
-'''
+```
+
+The bounding box labels for weakly supervised domain adapation can be downloaded from here:
