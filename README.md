@@ -7,7 +7,7 @@ Code for working with the dataset used for the [Scene Understanding Challenge fo
 
 **For using first add helpers/ to $PYTHONPATH**
 ```
-export PYTHONPATH="${PYTHONPATH}:helpers/
+export PYTHONPATH="${PYTHONPATH}:helpers/"
 ```
 
 **The code has been tested on python 3.6.4**
