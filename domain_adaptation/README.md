@@ -31,4 +31,4 @@ python3 preperation/createLabels.py --datadir $ANUE --id-type level3Id --num-wor
 python3 preperation/createLabels.py --datadir $ANUE --id-type level3Id --num-workers 4 --unsup_da True
 ```
 
-The bounding box labels for weakly supervised domain adapation can be downloaded from here:
+The bounding box labels for weakly supervised domain adapation can be downloaded from here: https://github.com/AutoNUE/public-code/tree/master/domain_adaptation/target/weakly-supervised
