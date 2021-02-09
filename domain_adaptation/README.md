@@ -11,13 +11,12 @@ Participants are requested to download the datasets from original websites, give
 2. https://bdd-data.berkeley.edu/ (you might have to click on Advanced tab, and then click on "proceed to bdd-data.berkeley.edu")
 3. https://download.visinf.tu-darmstadt.de/data/from_games/
 
-After downloading all the source datasets, download this repo, and move the source datasets in folder AutoNUE2021_DomainAdaptationChallenge/Source/ and run the following commands:
+After downloading all the source datasets, move them to folder ./domain_adaptation/source/datasets/ and run the following commands from public-code:
 
 ```
-cd AutoNUE2021_DomainAdaptationChallenge/Source/
 pip3 install requirements.txt
-chmod +x prep_all.sh
-./prep_all.sh
+chmod +x domain_adaptation/source/prep_all.sh
+./domain_adaptation/source/prep_all.sh
 ```
 
-This will create a folder "source/source_datasets_dir/" where you will find the images and annotations for the source dataset to be used for this competetion.
+This will create a folder "domain_adaptation/source/source_datasets_dir/" where you will find the images and annotations for the source dataset to be used for this competetion.
