@@ -1,11 +1,11 @@
 #! /bin/bash
 
-bdd_dd='bdd100k/seg/'
-mapillary_dd='mapillary-vistas-dataset_public_v1.1/'
-gta_dd='gta/'
+bdd_dd='./domain_adaptation/source/datasets/bdd100k/seg/'
+mapillary_dd='./domain_adaptation/source/datasets/mapillary-vistas-dataset_public_v1.1/'
+gta_dd='./domain_adaptation/source/datasets/gta/'
 
-sd='source_datasets_dir/'
-
-python core/mapillary.py ${mapillary_dd} ${sd}
-python core/gta.py ${gta_dd} ${sd}
-python core/bdds.py ${bdd_dd} ${sd}
+sd='./domain_adaptation/source/source_datasets_dir/'
+mkdir -p sd
+python3 ./domain_adaptation/source/core/mapillary.py ${mapillary_dd} ${sd}
+python3 ./domain_adaptation/source/core/gta.py ${gta_dd} ${sd}
+python3 ./domain_adaptation/source/core/bdds.py ${bdd_dd} ${sd}
