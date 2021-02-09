@@ -1,4 +1,5 @@
 numpy
 pandas==1.2.1
 tqdm
-scipy
+Pillow
+scipy==1.1.0
