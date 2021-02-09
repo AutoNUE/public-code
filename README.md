@@ -4,7 +4,8 @@ Code for working with the dataset used for the [Scene Understanding Challenge fo
 
 - http://cvit.iiit.ac.in/scene-understanding-challenge-2018/ 
 - http://cvit.iiit.ac.in/autonue2018/
-- https://cvit.iiit.ac.in/autonue2021/challenge.html
+- https://cvit.iiit.ac.in/autonue2019/
+- https://cvit.iiit.ac.in/autonue2021/
 
 **For using first add helpers/ to $PYTHONPATH**
 ```
