@@ -11,7 +11,7 @@ Participants are requested to download the datasets from original websites, give
 2. https://bdd-data.berkeley.edu/ (you might have to click on Advanced tab, and then click on "proceed to bdd-data.berkeley.edu")
 3. https://download.visinf.tu-darmstadt.de/data/from_games/
 
-After downloading all the source datasets, move them to folder ./domain_adaptation/source/datasets/ and run the following commands from public-code:
+After downloading all the source datasets, move them to folder ./domain_adaptation/source/datasets/ and **run the following commands from public-code**:
 
 ```
 pip3 install requirements.txt
