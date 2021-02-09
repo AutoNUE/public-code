@@ -5,7 +5,7 @@ Code for working with the dataset used for the [Scene Understanding Challenge fo
 - http://cvit.iiit.ac.in/scene-understanding-challenge-2018/ 
 - http://cvit.iiit.ac.in/autonue2018/
 - https://cvit.iiit.ac.in/autonue2019/
-- https://cvit.iiit.ac.in/autonue2021/ (refer Readme https://github.com/AutoNUE/public-code/tree/master/domain_adaptation)
+- https://cvit.iiit.ac.in/autonue2021/ (refer Readme at ./domain_adaptation)
 
 **For using first add helpers/ to $PYTHONPATH**
 ```
