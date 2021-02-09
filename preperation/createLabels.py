@@ -6,7 +6,8 @@ from __future__ import print_function
 import os
 import glob
 import sys
-from scipy.misc import imread, imsave
+#from scipy.misc import imread, imsave
+from imageio import imread, imsave
 import numpy as np
 from numpngw import write_png
 
@@ -15,9 +16,12 @@ from json2instanceImg import json2instanceImg
 
 
 from tqdm import tqdm
-from cityscape_panoptic_gt import panoptic_converter
+
 from argparse import ArgumentParser
 import os
+
+import pandas as pd
+import shutil
 
 args = None
 
@@ -68,6 +72,9 @@ def get_args():
     parser.add_argument('--color', type=bool, default=False)
     parser.add_argument('--instance', type=bool, default=False)
     parser.add_argument('--panoptic', type=bool, default=False)
+    parser.add_argument('--semisup_da', type=bool, default=False)
+    parser.add_argument('--unsup_da', type=bool, default=False)
+    parser.add_argument('--weaksup_da', type=bool, default=False)
     parser.add_argument('--num-workers', type=int, default=10)
 
     args = parser.parse_args()
@@ -91,8 +98,31 @@ def main(args):
     filesFine = glob.glob(searchFine)
     filesFine.sort()
 
-    files = filesFine
+    files = []#filesFine
 
+    #for semi supervised domain adaptation, convert only selected images
+    filesnew_semisup = []
+    filesnewunsup = []
+    if args.semisup_da:
+        d_strat = list(pd.read_csv('./domain_adaptation/target/semi-supervised/selected_samples.csv',header=None)[0])
+        d_strat = ["/".join(filenew.replace("_labellevel3Ids.png", "").split("/")[-3:]) for filenew in d_strat]
+        print(d_strat)
+        for fileold in filesFine:
+            if "val/" not in fileold:
+                searchstr = "/".join(fileold.replace("_polygons.json", "").split("/")[-3:])
+                if searchstr in d_strat:
+                    print(searchstr)
+                    filesnew_semisup.append(fileold)
+            else: filesnew_semisup.append(fileold)
+        files = filesnew_semisup
+    elif args.unsup_da or args.weaksup_da:    #for unsupervised domain adaptation, convert only val images
+        for fileold in filesFine:
+            if "val/" in fileold:
+                filesnewunsup.append(fileold)
+        files = filesnewunsup
+    else: files = filesFine
+
+    #print('args.semisup_da', args.semisup_da, len(files))
     if not files:
         tqdm.writeError(
             "Did not find any files. Please consult the README.")
@@ -117,6 +147,7 @@ def main(args):
     pool.join()
 
     if args.panoptic:
+        from cityscape_panoptic_gt import panoptic_converter
         for split in ['train', 'val']:
 
             tqdm.write("Panoptic Segmentation {} split".format(split))
