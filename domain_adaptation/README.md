@@ -1,4 +1,4 @@
-# AutoNUE2021_DomainAdaptationChallenge
+# AutoNUE2021_domain_adaptation
 
 This repository contains the datasets for Domain Adaptation challenge for AutoNEU 2021, CVPR Workshop. For more details, please visit https://cvit.iiit.ac.in/autonue2021/challenge.html
 
