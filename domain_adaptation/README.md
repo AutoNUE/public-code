@@ -23,7 +23,6 @@ datasets
   |  |  |--labels/
   |  |--testing/
   |     |--images/
-  |     |--labels/
   |--bdd100k/
   |  |--seg/
   |     |--images/
@@ -33,7 +32,6 @@ datasets
   |     |--labels/
   |        |--train/
   |        |--val/
-  |        |--test/
   |--gta/
   |  |--images/
   |  |--labels/
