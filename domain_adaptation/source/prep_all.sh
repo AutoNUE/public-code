@@ -11,4 +11,3 @@ python3 ./domain_adaptation/source/core/cityscapes.py ${cityscapes_dd} ${sd}
 python3 ./domain_adaptation/source/core/mapillary.py ${mapillary_dd} ${sd}
 python3 ./domain_adaptation/source/core/gta.py ${gta_dd} ${sd}
 python3 ./domain_adaptation/source/core/bdds.py ${bdd_dd} ${sd}
-
