@@ -47,7 +47,7 @@ datasets
 ```
 
 
-**run the following commands from public-code**:
+Run the following commands **from public-code**:
 
 ```
 pip3 install requirements.txt
