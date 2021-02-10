@@ -38,14 +38,14 @@ datasets
   |  |--images/
   |  |--labels/
   |--cityscapes/
-  |  |--gtFine/
-  |  |  |--train/
-  |  |  |--val/
-  |  |  |--test/
-  |  |--leftImg8bit/
-  |     |--train/
-  |     |--val/
-  |     |--test/
+     |--gtFine/
+     |  |--train/
+     |  |--val/
+     |  |--test/
+     |--leftImg8bit/
+        |--train/
+        |--val/
+        |--test/
 ```
 
 
