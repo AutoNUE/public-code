@@ -13,40 +13,39 @@ Participants are requested to download the datasets from original websites, give
 
 After downloading all the source datasets, move them to folder ./domain_adaptation/source/datasets/. Its structure should be as follows:
 ```
-datasets/mapillary-vistas-dataset_public_v1.1/
-  training/
-    images/
-    labels/
-  validation/
-    images/
-    labels/
-  testing/
-    images/
-    labels/
-
-datasets/bdd100k/seg/
-  images/
-    train/
-    val/
-    test/
-  labels/
-    train/
-    val/
-    test/
-    
-datasets/gta/
-  images
-  labels
-
-datasets/cityscapes/
-  gtFine/
-    train/
-    val/
-    test/
-  leftImg8bit/
-    train/
-    val/
-    test/
+datasets
+  |--mapillary-vistas-dataset_public_v1.1/
+  |  |--training/
+  |  |  |--images/
+  |  |  |--labels/
+  |  |--validation/
+  |  |  |--images/
+  |  |  |--labels/
+  |  |--testing/
+  |     |--images/
+  |     |--labels/
+  |--bdd100k/
+  |  |--seg/
+  |     |--images/
+  |     |  |--train/
+  |     |  |--val/
+  |     |  |--test/
+  |     |--labels/
+  |        |--train/
+  |        |--val/
+  |        |--test/
+  |--gta/
+  |  |--images/
+  |  |--labels/
+  |--cityscapes/
+  |  |--gtFine/
+  |  |  |--train/
+  |  |  |--val/
+  |  |  |--test/
+  |  |--leftImg8bit/
+  |     |--train/
+  |     |--val/
+  |     |--test/
 ```
 
 
