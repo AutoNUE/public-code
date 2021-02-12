@@ -56,7 +56,7 @@ datasets
 ```
 
 
-Run the following commands **from public-code**:
+Run the following commands:
 
 ```
 pip3 install requirements.txt
@@ -105,17 +105,19 @@ python preperation/createLabels.py --datadir $ANUE --id-type $IDTYPE --color [Tr
 - panoptic True generates panoptic masks in the format similar to COCO. See the modified evaluation scripts here: https://github.com/AutoNUE/panopticapi
 - C is the number of threads to run in parallel
 
-For the semantic segmentation challenge, masks should be generated using IDTYPE of level3Id and used for training models (similar to trainId in cityscapes). This can be done by the command:
-```bash
-python preperation/createLabels.py --datadir $ANUE --id-type level3Id --num-workers $C
-```
-
-Following commands are updated for the target labels of challenges other than supervised domain adaptation and semantic segmentation, **run them from public-code**:
+Following commands are updated for the target labels of challenges other than supervised domain adaptation and semantic segmentation:
 
 ```
 python3 preperation/createLabels.py --datadir $ANUE --id-type level3Id --num-workers $C --semisup_da True
 python3 preperation/createLabels.py --datadir $ANUE --id-type level3Id --num-workers $C --weaksup_da True
 python3 preperation/createLabels.py --datadir $ANUE --id-type level3Id --num-workers $C --unsup_da True
+
+```
+The bounding box labels for weakly supervised domain adapation can be downloaded from here: https://github.com/AutoNUE/public-code/tree/master/domain_adaptation/target/weakly-supervised
+
+For the semantic segmentation challenge, masks should be generated using IDTYPE of level3Id and used for training models (similar to trainId in cityscapes). This can be done by the command:
+```bash
+python preperation/createLabels.py --datadir $ANUE --id-type level3Id --num-workers $C
 ```
 
 The generated files:
@@ -123,8 +125,6 @@ The generated files:
 - _gtFine_labelLevel3Ids.png will be used for semantic segmentation
 
 
-
-The bounding box labels for weakly supervised domain adapation can be downloaded from here: https://github.com/AutoNUE/public-code/tree/master/domain_adaptation/target/weakly-supervised
 
 
 
