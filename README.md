@@ -73,8 +73,6 @@ This will create a folder "domain_adaptation/source/source_datasets_dir/" where 
 export PYTHONPATH="${PYTHONPATH}:helpers/"
 ```
 
-**The code has been tested on python 3.6.4**
-
 ### Dataset Structure 
 
 The structure is similar to the cityscapes dataset. That is:
