@@ -7,7 +7,128 @@ Code for working with the dataset used for the [Scene Understanding Challenge fo
 - http://cvit.iiit.ac.in/scene-understanding-challenge-2018/ 
 
 
+# AutoNUE2021_domain_adaptation
 
+This repository contains the datasets for Domain Adaptation challenge for AutoNEU 2021, CVPR Workshop. For more details, please visit https://cvit.iiit.ac.in/autonue2021/challenge.html
+
+
+# Source datasets:
+For the Cityscapes dataset, participants are requested to use the fine images (~3200 training samples). Refer: https://www.cityscapes-dataset.com/examples/#fine-annotations. For the other datasets (BDD, GTA and Mapillary), the list of image names are given in the csv files in the folder "Source".
+
+Participants are requested to download the datasets from original websites, given below for easy reference:-
+1. https://www.mapillary.com/dataset/vistas?pKey=q0GhQpk20wJm1ba1mfwJmw
+2. https://bdd-data.berkeley.edu/ (you might have to click on Advanced tab, and then click on "proceed to bdd-data.berkeley.edu")
+3. https://download.visinf.tu-darmstadt.de/data/from_games/
+
+After downloading all the source datasets, move them to folder ./domain_adaptation/source/datasets/. Its folder structure should be as follows:
+```
+datasets
+  |--mapillary-vistas-dataset_public_v1.1/
+  |  |--training/
+  |  |  |--images/
+  |  |  |--labels/
+  |  |--validation/
+  |  |  |--images/
+  |  |  |--labels/
+  |  |--testing/
+  |     |--images/
+  |--bdd100k/
+  |  |--seg/
+  |     |--images/
+  |     |  |--train/
+  |     |  |--val/
+  |     |  |--test/
+  |     |--labels/
+  |        |--train/
+  |        |--val/
+  |--gta/
+  |  |--images/
+  |  |--labels/
+  |--cityscapes/
+     |--gtFine/
+     |  |--train/
+     |  |--val/
+     |  |--test/
+     |--leftImg8bit/
+        |--train/
+        |--val/
+        |--test/
+```
+
+
+Run the following commands **from public-code**:
+
+```
+pip3 install requirements.txt
+chmod +x domain_adaptation/source/prep_all.sh
+./domain_adaptation/source/prep_all.sh
+```
+
+This will create a folder "domain_adaptation/source/source_datasets_dir/" where you will find the images and annotations for the source dataset to be used for this competetion.
+
+# Target datasets:
+
+**For using first add helpers/ to $PYTHONPATH**
+```
+export PYTHONPATH="${PYTHONPATH}:helpers/"
+```
+
+**The code has been tested on python 3.6.4**
+
+## Dataset Structure 
+
+The structure is similar to the cityscapes dataset. That is:
+```
+gtFine/{split}/{drive_no}/{img_id}_gtFine_polygons.json for ground truths
+leftImg8bit/{split}/{drive_no}/{img_id}_leftImg8bit.png for image frames
+```
+### Semantic Segmentation
+
+Furthermore for training, label masks needs to be generated as described bellow resulting in the following files:
+```
+gtFine/{split}/{drive_no}/{img_id}_gtFine_labellevel3Ids.png
+gtFine/{split}/{drive_no}/{img_id}_gtFine_instancelevel3Ids.png
+
+## Labels
+
+See helpers/anue_labels.py
+
+### Generate Label Masks (for training/evaluation) (Semantic/Instance/Panoptic Segmentation)
+```bash
+python preperation/createLabels.py --datadir $ANUE --id-type $IDTYPE --color [True|False] --instance [True|False] --num-workers $C
+```
+
+- ANUE is the path to the AutoNUE dataset
+- IDTYPE can be id, csId, csTrainId, level3Id, level2Id, level1Id. 
+- color True  generates the color masks
+- instance True generates the instance masks with the id given by IDTYPE
+- panoptic True generates panoptic masks in the format similar to COCO. See the modified evaluation scripts here: https://github.com/AutoNUE/panopticapi
+- C is the number of threads to run in parallel
+
+For the semantic segmentation challenge, masks should be generated using IDTYPE of level3Id and used for training models (similar to trainId in cityscapes). This can be done by the command:
+```bash
+python preperation/createLabels.py --datadir $ANUE --id-type level3Id --num-workers $C
+```
+
+Following commands are updated for the target labels of challenges other than supervised domain adaptation and semantic segmentation, **run them from public-code**:
+
+```
+python3 preperation/createLabels.py --datadir $ANUE --id-type level3Id --num-workers $C --semisup_da True
+python3 preperation/createLabels.py --datadir $ANUE --id-type level3Id --num-workers $C --weaksup_da True
+python3 preperation/createLabels.py --datadir $ANUE --id-type level3Id --num-workers $C --unsup_da True
+```
+
+The generated files:
+
+- _gtFine_labelLevel3Ids.png will be used for semantic segmentation
+
+
+
+The bounding box labels for weakly supervised domain adapation can be downloaded from here: https://github.com/AutoNUE/public-code/tree/master/domain_adaptation/target/weakly-supervised
+
+
+
+# AutoNUE2019
 
 **For using first add helpers/ to $PYTHONPATH**
 ```
