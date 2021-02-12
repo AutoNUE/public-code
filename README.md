@@ -7,7 +7,7 @@ Code for working with the dataset used for the [Scene Understanding Challenge fo
 - http://cvit.iiit.ac.in/scene-understanding-challenge-2018/ 
 
 
-# AutoNUE2021_domain_adaptation
+# AutoNUE2021
 
 This repository contains the datasets for Domain Adaptation challenge for AutoNEU 2021, CVPR Workshop. For more details, please visit https://cvit.iiit.ac.in/autonue2021/challenge.html
 
