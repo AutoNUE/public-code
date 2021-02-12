@@ -1,11 +1,13 @@
 # Scene Understanding Challenge for Autonomous Navigation in Unstructured Environments
 
 Code for working with the dataset used for the [Scene Understanding Challenge for Autonomous Navigation in Unstructured Environments](http://cvit.iiit.ac.in/scene-understanding-challenge-2018/). For details of getting the dataset and updates see:
-
-- http://cvit.iiit.ac.in/scene-understanding-challenge-2018/ 
-- http://cvit.iiit.ac.in/autonue2018/
-- https://cvit.iiit.ac.in/autonue2019/
 - https://cvit.iiit.ac.in/autonue2021/ (refer Readme at ./domain_adaptation)
+- https://cvit.iiit.ac.in/autonue2019/
+- http://cvit.iiit.ac.in/autonue2018/
+- http://cvit.iiit.ac.in/scene-understanding-challenge-2018/ 
+
+
+
 
 **For using first add helpers/ to $PYTHONPATH**
 ```
