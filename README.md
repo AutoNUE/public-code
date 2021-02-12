@@ -7,18 +7,18 @@ Code for working with the dataset used for the [Scene Understanding Challenge fo
 - http://cvit.iiit.ac.in/scene-understanding-challenge-2018/ 
 
 
-# AutoNUE 2021
+# AutoNUE 2021 (Domain Adaptation and Semantic Segmentation)
 
-This repository contains the datasets for Domain Adaptation challenge for AutoNEU 2021, CVPR Workshop. For more details, please visit https://cvit.iiit.ac.in/autonue2021/challenge.html
+This repository contains the datasets related to domain adaptation and segmentation challenge for AutoNEU 2021, CVPR Workshop. For more details, please visit https://cvit.iiit.ac.in/autonue2021/challenge.html. For the segmentation challenge, please skip "Source datasets" section below.
 
 
-# Source datasets:
-For the Cityscapes dataset, participants are requested to use the fine images (~3200 training samples). Refer: https://www.cityscapes-dataset.com/examples/#fine-annotations. For the other datasets (BDD, GTA and Mapillary), the list of image names are given in the csv files in the folder "Source".
+## Source datasets:
 
 Participants are requested to download the datasets from original websites, given below for easy reference:-
 1. https://www.mapillary.com/dataset/vistas?pKey=q0GhQpk20wJm1ba1mfwJmw
 2. https://bdd-data.berkeley.edu/ (you might have to click on Advanced tab, and then click on "proceed to bdd-data.berkeley.edu")
 3. https://download.visinf.tu-darmstadt.de/data/from_games/
+4. https://www.cityscapes-dataset.com/examples/#fine-annotations (only fine-annotations to be used)
 
 After downloading all the source datasets, move them to folder ./domain_adaptation/source/datasets/. Its folder structure should be as follows:
 ```
@@ -66,7 +66,7 @@ chmod +x domain_adaptation/source/prep_all.sh
 
 This will create a folder "domain_adaptation/source/source_datasets_dir/" where you will find the images and annotations for the source dataset to be used for this competetion.
 
-# Target datasets:
+## Target datasets:
 
 **For using first add helpers/ to $PYTHONPATH**
 ```
@@ -75,25 +75,25 @@ export PYTHONPATH="${PYTHONPATH}:helpers/"
 
 **The code has been tested on python 3.6.4**
 
-## Dataset Structure 
+### Dataset Structure 
 
 The structure is similar to the cityscapes dataset. That is:
 ```
 gtFine/{split}/{drive_no}/{img_id}_gtFine_polygons.json for ground truths
 leftImg8bit/{split}/{drive_no}/{img_id}_leftImg8bit.png for image frames
 ```
-### Semantic Segmentation
+#### Semantic Segmentation
 
-Furthermore for training, label masks needs to be generated as described bellow resulting in the following files:
+Furthermore for training, label masks needs to be generated as described below resulting in the following files:
 ```
 gtFine/{split}/{drive_no}/{img_id}_gtFine_labellevel3Ids.png
 gtFine/{split}/{drive_no}/{img_id}_gtFine_instancelevel3Ids.png
 ```
-## Labels
+### Labels
 
 See helpers/anue_labels.py
 
-### Generate Label Masks (for training/evaluation) (Semantic/Instance/Panoptic Segmentation)
+#### Generate Label Masks (for training/evaluation) (Semantic/Instance/Panoptic Segmentation)
 ```bash
 python preperation/createLabels.py --datadir $ANUE --id-type $IDTYPE --color [True|False] --instance [True|False] --num-workers $C
 ```
@@ -126,8 +126,6 @@ The generated files:
 
 
 
-
-
 # AutoNUE 2019
 
 **For using first add helpers/ to $PYTHONPATH**
@@ -146,7 +144,7 @@ leftImg8bit/{split}/{drive_no}/{img_id}_leftImg8bit.png for image frames
 ```
 ### Semantic Segmentation and Instance Segmentation
 
-Furthermore for training, label masks needs to be generated as described bellow resulting in the following files:
+Furthermore for training, label masks needs to be generated as described below resulting in the following files:
 ```
 gtFine/{split}/{drive_no}/{img_id}_gtFine_labellevel3Ids.png
 gtFine/{split}/{drive_no}/{img_id}_gtFine_instancelevel3Ids.png
@@ -154,7 +152,7 @@ gtFine/{split}/{drive_no}/{img_id}_gtFine_instancelevel3Ids.png
 
 ### Panoptic Challenge
 
-Furthermore for training, panoptic masks needs to be generated as described bellow resulting in the following files:
+Furthermore for training, panoptic masks needs to be generated as described below resulting in the following files:
 ```
 gtFine/{split}_panoptic/{drive_no}_{img_id}_gtFine_panopticlevel3Ids.png
 gtFine/{split}_panoptic.json
