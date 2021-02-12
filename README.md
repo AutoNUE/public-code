@@ -88,7 +88,7 @@ Furthermore for training, label masks needs to be generated as described bellow 
 ```
 gtFine/{split}/{drive_no}/{img_id}_gtFine_labellevel3Ids.png
 gtFine/{split}/{drive_no}/{img_id}_gtFine_instancelevel3Ids.png
-
+```
 ## Labels
 
 See helpers/anue_labels.py
