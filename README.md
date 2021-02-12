@@ -1,13 +1,13 @@
 # Scene Understanding Challenge for Autonomous Navigation in Unstructured Environments
 
 Code for working with the dataset used for the [Scene Understanding Challenge for Autonomous Navigation in Unstructured Environments](http://cvit.iiit.ac.in/scene-understanding-challenge-2018/). For details of getting the dataset and updates see:
-- https://cvit.iiit.ac.in/autonue2021/ (refer Readme at ./domain_adaptation)
+- https://cvit.iiit.ac.in/autonue2021/
 - https://cvit.iiit.ac.in/autonue2019/
 - http://cvit.iiit.ac.in/autonue2018/
 - http://cvit.iiit.ac.in/scene-understanding-challenge-2018/ 
 
 
-# AutoNUE2021
+# AutoNUE 2021
 
 This repository contains the datasets for Domain Adaptation challenge for AutoNEU 2021, CVPR Workshop. For more details, please visit https://cvit.iiit.ac.in/autonue2021/challenge.html
 
@@ -128,7 +128,7 @@ The generated files:
 
 
 
-# AutoNUE2019
+# AutoNUE 2019
 
 **For using first add helpers/ to $PYTHONPATH**
 ```
