@@ -9,7 +9,7 @@ Code for working with the dataset used for the [Scene Understanding Challenge fo
 
 # AutoNUE 2021 (Domain Adaptation and Semantic Segmentation)
 
-This repository contains the datasets related to domain adaptation and segmentation challenges for AutoNEU 2021, CVPR Workshop. For more details, please visit https://cvit.iiit.ac.in/autonue2021/challenge.html. For the segmentation challenge, please skip "Source datasets" section below.
+This repository contains the datasets related to domain adaptation and segmentation challenges for AutoNEU 2021, CVPR Workshop. For more details, please visit https://cvit.iiit.ac.in/autonue2021/challenge. For the segmentation challenge, please skip "Source datasets" section below.
 
 
 ## Source datasets:
