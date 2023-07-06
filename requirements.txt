@@ -2,5 +2,5 @@ numpy
 pandas==1.2.1
 tqdm
 Pillow
-scipy==1.1.0
+scipy==1.10.0
 imageio
